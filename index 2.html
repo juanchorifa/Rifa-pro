@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050b19">
+<title>RIFA PRO | Plataforma de rifas</title>
+<style>
+:root{--bg:#050b19;--panel:#0b1730;--panel2:#0e2040;--line:#1c3d68;--gold:#ffc928;--gold2:#ff9d00;--cyan:#22c8ff;--text:#f4f7ff;--muted:#9eb1d0;--green:#25d695;--red:#ff526b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% -10%,#16386b 0,transparent 36%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+header{position:sticky;top:0;z-index:20;background:#050b19ed;backdrop-filter:blur(16px);border-bottom:1px solid #24466e;display:flex;align-items:center;justify-content:space-between;padding:12px clamp(14px,4vw,48px);gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.5px}.crown{font-size:29px;color:var(--gold);filter:drop-shadow(0 0 10px #ffc92888)}.brand strong{font-size:22px}.brand strong span{color:var(--gold)}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:1.5px}
+nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}nav button,.outline{border:1px solid transparent;background:transparent;color:#dce8ff;padding:10px 13px;border-radius:10px;font-weight:700}nav button.active,nav button:hover{background:#10274a;border-color:#28598c;color:var(--gold)}
+.header-actions{display:flex;gap:8px;align-items:center}.btn{border:0;border-radius:12px;padding:12px 17px;font-weight:900;background:linear-gradient(100deg,var(--gold),var(--gold2));color:#171000;box-shadow:0 5px 20px #ffb70033;transition:.2s}.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.btn.secondary{background:#122b50;color:#eaf3ff;border:1px solid #2b5483;box-shadow:none}.btn.danger{background:#4b1727;color:#ffdce2;border:1px solid #9c2945;box-shadow:none}.btn.small{padding:8px 11px;font-size:12px}
+main{max-width:1440px;margin:auto;padding:20px clamp(12px,3vw,34px) 50px}
+.hero{position:relative;overflow:hidden;min-height:285px;border:1px solid #4168a0;border-radius:22px;padding:30px clamp(20px,5vw,65px);display:flex;align-items:center;background:linear-gradient(105deg,#07152e 4%,#0c2860 48%,#090f24 100%);box-shadow:0 18px 55px #0008}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}.hero:before{width:330px;height:330px;right:12%;top:-130px;border:2px solid #ffc92888;box-shadow:0 0 40px #ffc92866,inset 0 0 35px #ffc92833;animation:spin 16s linear infinite}.hero:after{width:220px;height:220px;right:18%;bottom:-170px;background:#176aff66;filter:blur(45px)}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{box-shadow:0 0 30px #ffc92877}}@keyframes float{50%{transform:translateY(-9px)}}@keyframes shimmer{to{background-position:200% center}}
+.hero-copy{position:relative;z-index:2;max-width:620px}.eyebrow{color:var(--gold);font-weight:900;letter-spacing:2px;font-size:12px}.hero h1{font-size:clamp(36px,6vw,68px);line-height:.98;margin:12px 0;text-transform:uppercase;font-weight:1000;text-shadow:0 5px 25px #000}.hero h1 span{color:var(--gold);display:block}.hero p{color:#d2def3;max-width:500px;line-height:1.6}.hero-emoji{position:absolute;right:8%;top:50%;transform:translateY(-50%);font-size:clamp(90px,17vw,190px);filter:drop-shadow(0 0 25px #ffc92899);animation:float 4s ease-in-out infinite}
+.trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;color:#dce8ff;font-size:12px}.trust span{display:flex;gap:7px;align-items:center}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:28px 2px 14px}.section-head h2{margin:0;font-size:22px}.section-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{background:linear-gradient(145deg,#0e2040,#081329);border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:0 10px 25px #0003;transition:.25s}.card:hover{transform:translateY(-4px);border-color:#3b8dd2;box-shadow:0 12px 35px #087bca22}.product-art{height:155px;display:grid;place-items:center;font-size:80px;background:radial-gradient(circle at 50% 65%,#1e5797,#0a1730 65%);position:relative}.product-art:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,#ffffff14 50%,transparent 70%);background-size:200% 100%;animation:shimmer 5s linear infinite}.card-body{padding:14px}.card h3{margin:0 0 6px;font-size:16px}.muted{color:var(--muted);font-size:12px}.price{font-size:20px;color:var(--gold);font-weight:1000;margin:10px 0}.progress{height:7px;background:#1b3152;border-radius:9px;overflow:hidden;margin:9px 0}.progress i{display:block;height:100%;background:linear-gradient(90deg,#00a8ff,var(--gold));border-radius:9px}.card-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px}
+.columns{display:grid;grid-template-columns:1.2fr .8fr;gap:15px;margin-top:18px}.panel{background:linear-gradient(145deg,#0c1b35,#081329);border:1px solid var(--line);border-radius:17px;padding:18px}.panel h2,.panel h3{margin:0 0 14px}.livebox{display:flex;align-items:center;gap:15px}.live-number{width:90px;height:90px;border-radius:50%;display:grid;place-items:center;font-size:34px;font-weight:1000;color:#071326;background:radial-gradient(circle,#fff 0 20%,#ffc928 21% 45%,#ff8500 46% 58%,#182c55 60%);box-shadow:0 0 30px #ffb70088;animation:pulse 2s infinite}.livebox p{color:var(--muted);font-size:13px;line-height:1.5}
+.admin-banner{display:flex;align-items:center;justify-content:space-between;gap:15px;background:#102448;border:1px solid #2b5687;border-radius:15px;padding:15px;margin:20px 0}.admin-banner p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.page{display:none}.page.active{display:block}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:15px 0}.stat{padding:16px;border:1px solid var(--line);background:#0c1b35;border-radius:14px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:25px;color:var(--gold);margin-top:6px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:#c9d8ef;font-weight:800}.field input,.field select,.field textarea{width:100%;background:#061126;color:#fff;border:1px solid #29486e;border-radius:10px;padding:12px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #22c8ff18}.field textarea{min-height:75px;resize:vertical}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;min-width:580px}th,td{text-align:left;padding:12px;border-bottom:1px solid #1b3454;font-size:13px}th{color:var(--gold);background:#102448}td{color:#dce8f8}tr:last-child td{border-bottom:0}.tag{display:inline-block;padding:4px 8px;border-radius:20px;font-size:11px;font-weight:900;background:#173c37;color:#75f0bd}.tag.pending{background:#4b3918;color:#ffd66b}
+.notice{border:1px solid #6a5424;background:#2a220f;color:#ffe3a0;padding:12px;border-radius:12px;font-size:12px;line-height:1.5;margin:12px 0}
+.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed #345276;border-radius:12px}
+footer{border-top:1px solid #25456e;padding:25px;text-align:center;color:var(--muted);font-size:12px;background:#040916}
+.modal{position:fixed;inset:0;z-index:50;background:#000b;display:none;align-items:center;justify-content:center;padding:14px}.modal.open{display:flex}.modal-box{width:min(540px,100%);max-height:90vh;overflow:auto;background:#0a1931;border:1px solid #376395;border-radius:18px;padding:20px;box-shadow:0 20px 70px #000}.modal-head{display:flex;justify-content:space-between;align-items:center}.close{background:#1a3152;color:#fff;border:0;border-radius:8px;padding:8px 12px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,120px);background:#123c34;border:1px solid #27c995;color:#dffff4;padding:12px 18px;border-radius:12px;z-index:100;transition:.3s;box-shadow:0 8px 30px #0008}.toast.show{transform:translate(-50%,0)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.columns{grid-template-columns:1fr}.hero-emoji{right:4%;opacity:.65}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){header{flex-wrap:wrap}.brand{flex:1}.header-actions{order:2}nav{order:3;width:100%;overflow:auto;justify-content:flex-start}nav button{white-space:nowrap;padding:8px 10px;font-size:12px}.hero{min-height:300px;padding:24px 18px}.hero-emoji{right:-15px;top:68%;font-size:105px;opacity:.35}.hero-copy{max-width:100%}.hero h1{font-size:43px}.trust{gap:10px}.grid{grid-template-columns:1fr 1fr;gap:9px}.product-art{height:115px;font-size:58px}.card-body{padding:10px}.card h3{font-size:13px}.card .price{font-size:17px}.card-foot{align-items:stretch;flex-direction:column}.card-foot .btn{width:100%;padding:9px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:21px}.admin-banner{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="crown">♛</span><div><strong>RIFA <span>PRO</span></strong><small>TU SUERTE, NUESTRO GANADOR</small></div></div>
+  <nav>
+    <button class="active" data-page="inicio">⌂ Inicio</button>
+    <button data-page="rifas">🎁 Rifas</button>
+    <button data-page="mis-tickets">▤ Mis tickets</button>
+    <button data-page="resultados">🏆 Resultados</button>
+    <button data-page="admin">⚙ Administración</button>
+  </nav>
+  <div class="header-actions"><button class="btn secondary small" id="accountBtn">Mi cuenta</button></div>
+</header>
+
+<main>
+<section class="page active" id="page-inicio">
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">✨ PREMIOS QUE TE EMOCIONAN</div>
+      <h1>Grandes <span>premios</span> te esperan</h1>
+      <p>Explora las rifas disponibles, revisa sus condiciones y participa cuando la promoción esté habilitada.</p>
+      <button class="btn" onclick="goPage('rifas')">Explorar rifas →</button>
+      <div class="trust"><span>🛡️ Información clara</span><span>⚡ Compra sencilla</span><span>🏆 Premios publicados</span></div>
+    </div>
+    <div class="hero-emoji" aria-hidden="true">🎁</div>
+  </div>
+  <div class="section-head"><div><h2>🔥 Rifas destacadas</h2><p>Conoce los premios disponibles</p></div><button class="btn secondary small" onclick="goPage('rifas')">Ver todas</button></div>
+  <div class="grid" id="homeRaffles"></div>
+  <div class="columns">
+    <div class="panel"><h2>🎟️ ¿Cómo participar?</h2><p class="muted">1. Elige una rifa y revisa sus reglas. 2. Selecciona la cantidad de tickets y el precio indicado. 3. Sigue las instrucciones de pago cuando la rifa esté habilitada. 4. Conserva tu confirmación.</p><div class="notice">Las rifas de esta versión son demostrativas. No realices transferencias ni envíes comprobantes desde esta página todavía.</div></div>
+    <div class="panel"><h2>📡 Actividad de la plataforma</h2><div class="livebox"><div class="live-number">PRO</div><div><strong>RIFA PRO</strong><p>La actividad real, los tickets disponibles y los resultados se mostrarán al conectar la base de datos y habilitar las rifas.</p></div></div></div>
+  </div>
+</section>
+
+<section class="page" id="page-rifas">
+  <div class="section-head"><div><h2>🎁 Todas las rifas</h2><p>Premios y condiciones de participación</p></div></div>
+  <div class="grid" id="allRaffles"></div>
+</section>
+
+<section class="page" id="page-mis-tickets">
+  <div class="section-head"><div><h2>🎟️ Mis tickets</h2><p>Consulta tus participaciones confirmadas cuando el sistema esté conectado.</p></div></div>
+  <div class="notice">El historial real de tickets requiere iniciar sesión y conectar Supabase. Esta versión inicial no genera participaciones válidas.</div>
+  <div class="empty">Todavía no hay tickets vinculados a una cuenta.</div>
+</section>
+
+<section class="page" id="page-resultados">
+  <div class="section-head"><div><h2>🏆 Resultados</h2><p>Los resultados oficiales se publicarán aquí una vez habilitado el sistema.</p></div></div>
+  <div class="empty">No hay sorteos publicados todavía.</div>
+</section>
+
+<section class="page" id="page-admin">
+  <div class="section-head"><div><h2>⚙ Panel de administración</h2><p>Gestiona premios, precios y datos generales de la plataforma.</p></div><span class="tag pending">MODO DEMOSTRACIÓN</span></div>
+  <div class="notice">Este panel todavía no tiene autenticación ni permisos de servidor. No publiques este prototipo como administrador real: al conectar Supabase añadiremos inicio de sesión, roles y políticas de seguridad.</div>
+  <div class="stats">
+    <div class="stat"><small>Rifas creadas en este navegador</small><strong id="statRaffles">0</strong></div>
+    <div class="stat"><small>Tickets registrados</small><strong>0</strong></div>
+    <div class="stat"><small>Pagos confirmados</small><strong>0</strong></div>
+    <div class="stat"><small>Premios entregados</small><strong>0</strong></div>
+  </div>
+  <div class="columns">
+    <div class="panel">
+      <h3>➕ Crear una rifa</h3>
+      <form id="raffleForm" class="form-grid">
+        <div class="field full"><label>Nombre del premio</label><input name="name" required placeholder="Ej. iPhone 16 Pro Max"></div>
+        <div class="field"><label>Tipo de artículo</label><select name="category"><option>Celular</option><option>Computadora</option><option>Patineta eléctrica</option><option>Consola</option><option>Electrodoméstico</option><option>Otro</option></select></div>
+        <div class="field"><label>Icono / emoji</label><input name="emoji" value="🎁" maxlength="4"></div>
+        <div class="field"><label>Precio por ticket (RD$)</label><input name="price" type="number" min="1" step="0.01" required placeholder="100"></div>
+        <div class="field"><label>Mínimo de tickets por compra</label><input name="minimum" type="number" min="1" step="1" value="1" required></div>
+        <div class="field"><label>Total de tickets disponibles</label><input name="total" type="number" min="1" step="1" required placeholder="500"></div>
+        <div class="field"><label>Fecha estimada del sorteo</label><input name="date" type="date"></div>
+        <div class="field full"><label>Descripción y condiciones</label><textarea name="description" placeholder="Describe el premio, condiciones y reglas..."></textarea></div>
+        <div class="field full"><button class="btn" type="submit">Guardar rifa de demostración</button></div>
+      </form>
+    </div>
+    <div class="panel">
+      <h3>🏦 Cuenta bancaria para depósitos</h3>
+      <form id="bankForm" class="form-grid">
+        <div class="field full"><label>Banco</label><input name="bank" placeholder="Nombre del banco"></div>
+        <div class="field full"><label>Nombre del titular</label><input name="holder" placeholder="Titular de la cuenta"></div>
+        <div class="field full"><label>Tipo de cuenta</label><select name="type"><option>Cuenta de ahorro</option><option>Cuenta corriente</option></select></div>
+        <div class="field full"><label>Número de cuenta</label><input name="number" placeholder="Número de cuenta"></div>
+        <div class="field full"><label>Moneda</label><select name="currency"><option>RD$ - Peso dominicano</option><option>USD - Dólar estadounidense</option></select></div>
+        <div class="field full"><button class="btn secondary" type="submit">Guardar datos localmente</button></div>
+      </form>
+      <div class="notice">Por seguridad, no guardes aquí datos bancarios reales todavía. Esta versión solo almacena datos de prueba en el navegador. La configuración definitiva se hará en el backend con acceso restringido.</div>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:15px">
+    <h3>📋 Rifas registradas en este navegador</h3>
+    <div id="adminRaffles"></div>
+  </div>
+</section>
+</main>
+<footer>♛ RIFA PRO · Plataforma demostrativa · Juega de forma responsable y consulta siempre las reglas oficiales.</footer>
+
+<div class="modal" id="raffleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="modal-head"><h2 id="modalTitle">Detalles de la rifa</h2><button class="close" onclick="closeModal()">✕</button></div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// PROTOTIPO INICIAL: los datos se guardan solo en este navegador.
+// No hay cobros, reservas de tickets ni confirmaciones reales.
+// La integración segura con Supabase se realizará en una etapa posterior.
+const starterRaffles = [
+ {id:1,name:"Smartphone premium",category:"Celular",emoji:"📱",price:100,minimum:2,total:500,date:"",description:"Premio de demostración. Las especificaciones, garantía y condiciones deberán publicarse antes de habilitar la rifa.",status:"Borrador"},
+ {id:2,name:"Patineta eléctrica",category:"Patineta eléctrica",emoji:"🛴",price:75,minimum:2,total:400,date:"",description:"Premio de demostración. Añade marca, modelo, autonomía y condiciones de entrega.",status:"Borrador"},
+ {id:3,name:"Laptop para gaming",category:"Computadora",emoji:"💻",price:125,minimum:1,total:300,date:"",description:"Premio de demostración. Añade procesador, memoria, almacenamiento y demás especificaciones.",status:"Borrador"},
+ {id:4,name:"Consola de videojuegos",category:"Consola",emoji:"🎮",price:50,minimum:3,total:600,date:"",description:"Premio de demostración. Añade versión, accesorios incluidos y condiciones.",status:"Borrador"}
+];
+let raffles = JSON.parse(localStorage.getItem("rifapro_demo_raffles") || "null") || starterRaffles;
+function persist(){localStorage.setItem("rifapro_demo_raffles",JSON.stringify(raffles));}
+function money(n){return "RD$"+Number(n).toLocaleString("es-DO",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function card(r){return `<article class="card"><div class="product-art">${escapeHTML(r.emoji||"🎁")}</div><div class="card-body"><div class="muted">${escapeHTML(r.category||"Premio")}</div><h3>${escapeHTML(r.name)}</h3><div class="price">${money(r.price)} <span class="muted">/ ticket</span></div><div class="muted">Mínimo: ${r.minimum} tickets · ${r.total} disponibles al crear</div><div class="card-foot"><span class="tag pending">${escapeHTML(r.status||"Borrador")}</span><button class="btn small" onclick="showRaffle(${r.id})">Ver detalles</button></div></div></article>`;}
+function escapeHTML(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function render(){
+ const cards=raffles.map(card).join("")||'<div class="empty">No hay rifas creadas.</div>';
+ document.getElementById("homeRaffles").innerHTML=cards;
+ document.getElementById("allRaffles").innerHTML=cards;
+ document.getElementById("statRaffles").textContent=raffles.length;
+ document.getElementById("adminRaffles").innerHTML=raffles.length?`<div class="table-wrap"><table><thead><tr><th>Premio</th><th>Precio ticket</th><th>Mínimo</th><th>Tickets</th><th>Estado</th><th>Acción</th></tr></thead><tbody>${raffles.map(r=>`<tr><td>${escapeHTML(r.emoji)} ${escapeHTML(r.name)}</td><td>${money(r.price)}</td><td>${r.minimum}</td><td>${r.total}</td><td><span class="tag pending">${escapeHTML(r.status||"Borrador")}</span></td><td><button class="btn danger small" onclick="deleteRaffle(${r.id})">Eliminar</button></td></tr>`).join("")}</tbody></table></div>`:'<div class="empty">Todavía no has creado rifas.</div>';
+}
+function goPage(name){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ const target=document.getElementById("page-"+name);if(target)target.classList.add("active");
+ document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>goPage(b.dataset.page)));
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600);}
+document.getElementById("raffleForm").addEventListener("submit",e=>{
+ e.preventDefault();const f=new FormData(e.target);
+ const r={id:Date.now(),name:f.get("name").trim(),category:f.get("category"),emoji:f.get("emoji")||"🎁",price:Number(f.get("price")),minimum:Number(f.get("minimum")),total:Number(f.get("total")),date:f.get("date"),description:f.get("description"),status:"Borrador"};
+ if(!r.name||r.price<=0||r.minimum<1||r.total<r.minimum){toast("Revisa los datos y el mínimo de tickets.");return;}
+ raffles.unshift(r);persist();render();e.target.reset();e.target.elements.minimum.value=1;e.target.elements.emoji.value="🎁";toast("Rifa guardada en este navegador."); 
+});
+document.getElementById("bankForm").addEventListener("submit",e=>{e.preventDefault();toast("Demostración: no se guardaron datos bancarios reales.");});
+function showRaffle(id){
+ const r=raffles.find(x=>x.id===id);if(!r)return;
+ document.getElementById("modalTitle").textContent=r.name;
+ document.getElementById("modalContent").innerHTML=`<div class="product-art" style="border-radius:12px;margin:12px 0">${escapeHTML(r.emoji)}</div><p class="muted">${escapeHTML(r.category)}</p><h2 style="color:var(--gold)">${money(r.price)} por ticket</h2><p>${escapeHTML(r.description||"Sin descripción.")}</p><p class="muted">Compra mínima: ${r.minimum} tickets · Tickets publicados: ${r.total}</p><p class="muted">Fecha estimada: ${r.date||"Por definir"} · Estado: ${escapeHTML(r.status||"Borrador")}</p><div class="notice">Esta rifa es una ficha de demostración. No se pueden comprar tickets ni realizar pagos en esta versión.</div><button class="btn secondary" onclick="closeModal()">Cerrar</button>`;
+ document.getElementById("raffleModal").classList.add("open");
+}
+function closeModal(){document.getElementById("raffleModal").classList.remove("open");}
+document.getElementById("raffleModal").addEventListener("click",e=>{if(e.target.id==="raffleModal")closeModal();});
+function deleteRaffle(id){if(!confirm("¿Eliminar esta rifa de demostración?"))return;raffles=raffles.filter(r=>r.id!==id);persist();render();toast("Rifa eliminada.");}
+document.getElementById("accountBtn").addEventListener("click",()=>toast("El registro e inicio de sesión se conectarán con Supabase."));
+render();
+</script>
+</body>
+</html>
